@@ -39,6 +39,12 @@
      <input type="file" id="audio-upload" accept="audio/mpeg, audio/wav">
      <small id="upload-status"></small>
   </div>
+
+  <div class="form-group">
+    <label for="api-url">Optional API URL (GET):</label>
+    <input type="text" id="api-url" placeholder="https://example.com/notify">
+    <small>If provided, this URL will be called via GET when the counter increases.</small>
+  </div>
   
   <button id="save-button">Save & Set Tab</button>
   <div id="message-area"></div>

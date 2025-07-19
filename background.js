@@ -69,6 +69,15 @@ async function checkValue() {
                 type: 'playSound', 
                 payload: { src: settings.audioSrc }
             });
+            // API call logic
+            const { apiUrl } = await chrome.storage.local.get('apiUrl');
+            if (apiUrl) {
+                try {
+                    await fetch(apiUrl, { method: 'GET', cache: 'no-store' });
+                } catch (err) {
+                    console.error('Buzz Counter: API call failed', err);
+                }
+            }
         }
 
         await chrome.storage.session.set({ lastValue: currentValue });

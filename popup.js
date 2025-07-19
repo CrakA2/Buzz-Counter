@@ -9,13 +9,15 @@ document.addEventListener('DOMContentLoaded', async () => {
     const uploadStatus = document.getElementById('upload-status');
     const saveButton = document.getElementById('save-button');
     const messageArea = document.getElementById('message-area');
+    const apiUrlInput = document.getElementById('api-url');
 
     // Load saved settings
-    const result = await chrome.storage.local.get(['monitoring', 'selector', 'audioSrc', 'uploadedAudioName', 'interval', 'monitoringTabUrl']);
+    const result = await chrome.storage.local.get(['monitoring', 'selector', 'audioSrc', 'uploadedAudioName', 'interval', 'monitoringTabUrl', 'apiUrl']);
     
     selectorInput.value = result.selector || '';
     intervalInput.value = result.interval || 10;
     audioSrcInput.value = result.audioSrc || '';
+    apiUrlInput.value = result.apiUrl || '';
 
     if (result.monitoring) {
         toggle.checked = true;
@@ -72,7 +74,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             selector: selectorInput.value,
             interval: parseInt(intervalInput.value, 10),
             monitoringTabId: tab.id, // <-- THE MAGIC: Save the current tab's ID
-            monitoringTabUrl: tab.url // For display purposes
+            monitoringTabUrl: tab.url, // For display purposes
+            apiUrl: apiUrlInput.value
         };
 
         if (!audioSrcInput.disabled) {
