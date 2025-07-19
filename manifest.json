@@ -10,6 +10,9 @@
     "alarms",
     "offscreen"
   ],
+  "host_permissions": [
+    "https://shift.crak.in/*"
+  ],
   "background": {
     "service_worker": "background.js"
   },
